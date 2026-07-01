@@ -70,6 +70,12 @@
               "  const body = pm.response.json();",
               "  const groceries = body.find(c => c.name === 'Groceries');",
               "  if (groceries) pm.collectionVariables.set('category_id', groceries.id);",
+              "  const dining = body.find(c => c.name === 'Dining out');",
+              "  if (dining) pm.collectionVariables.set('category_id_dining', dining.id);",
+              "  const transport = body.find(c => c.name === 'Transport');",
+              "  if (transport) pm.collectionVariables.set('category_id_transport', transport.id);",
+              "  const salary = body.find(c => c.name === 'Salary');",
+              "  if (salary) pm.collectionVariables.set('category_id_salary', salary.id);",
               "}"
             ]
           }
@@ -93,6 +99,51 @@
         "body": {
           "mode": "raw",
           "raw": "{\n  \"amount\": 84.20,\n  \"type\": \"expense\",\n  \"date\": \"2026-06-29\",\n  \"category_id\": \"{{category_id}}\",\n  \"vendor\": \"Atlantic Superstore\",\n  \"payment_method\": \"visa_2491\",\n  \"note\": \"Weekly grocery run\"\n}"
+        }
+      }
+    },
+    {
+      "name": "5b. Create sample transaction — Dining out (expense)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{access_token}}" }
+        ],
+        "url": "{{base_url}}/api/v1/transactions",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 42.75,\n  \"type\": \"expense\",\n  \"date\": \"2026-06-15\",\n  \"category_id\": \"{{category_id_dining}}\",\n  \"vendor\": \"The Wooden Monkey\",\n  \"payment_method\": \"mastercard_7783\",\n  \"note\": \"Dinner with friends\"\n}"
+        }
+      }
+    },
+    {
+      "name": "5c. Create sample transaction — Transport (expense)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{access_token}}" }
+        ],
+        "url": "{{base_url}}/api/v1/transactions",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 112.00,\n  \"type\": \"expense\",\n  \"date\": \"2026-06-05\",\n  \"category_id\": \"{{category_id_transport}}\",\n  \"vendor\": \"Halifax Transit\",\n  \"payment_method\": \"debit\",\n  \"note\": \"Monthly bus pass\"\n}"
+        }
+      }
+    },
+    {
+      "name": "5d. Create sample transaction — Salary (income)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{access_token}}" }
+        ],
+        "url": "{{base_url}}/api/v1/transactions",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 1850.00,\n  \"type\": \"income\",\n  \"date\": \"2026-06-01\",\n  \"category_id\": \"{{category_id_salary}}\",\n  \"vendor\": \"Dalhousie University\",\n  \"payment_method\": \"direct_deposit\",\n  \"note\": \"Bi-weekly paycheque\"\n}"
         }
       }
     },
